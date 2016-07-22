@@ -1,0 +1,87 @@
+{% extends 'genomebrowser/base.html' %}
+{% block title %}{{ rg }}{% endblock %}
+{% block dropdown %}
+    {% for genome in genomes %}
+      <li><a href="{% url 'genomebrowser:detail' genome.id %}">{{genome.speciesName}}{{genome.ucscName}}</a></li>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+{% if error_message %}
+    <p><strong> {{ error_message }}</strong></p>
+{% endif %}
+
+<script language="javascript" src="http://www.biodalliance.org/release-0.13/dalliance-compiled.js"></script>
+<script language="javascript">
+
+var a =  new Browser({
+    noPersist:  true,
+    chr:          '1',
+    viewStart:    32000000,
+    viewEnd:      32030000,
+
+    coordSystem: {
+      speciesName: '{{ genome.speciesName }}',
+      taxon: {{ genome.taxon }} ,
+      auth: '{{ genome.auth }}',
+      version: '{{ genome.version }}',
+	  ucscName: '{{ genome.ucscname }}',
+    },
+
+ 	 chains: {
+	    mm9ToMm10: new Chainset('http://www.derkholm.net:8080/das/mm9ToMm10/', 'NCBIM37', 'GRCm38',
+	                             {
+	                               speciesName: '{{ genome.speciesName }}',
+  	                                taxon: {{ genome.taxon }},
+  	                                auth: 'NCBIM',
+  	                                version: 37,
+  	                                ucscName: 'mm9'
+  	                             })
+ 	   },
+
+
+
+    sources:
+	 [
+			{name:                'Reference Genome',
+			 twoBitURI:           '{{ genome.twoBitURI }}',
+			 tier_type:           'sequence',
+			},
+
+			{name:                 '{{ genome.genes }}',
+			 desc:                 '{{ genome.genesDescription }}',
+			 uri:                  '{{ genome.genesURI }}',
+			 collapseSuperGroups:  true,
+			 stylesheetURI:        '{{ genome.stylesheetURI }}',
+			 trixURI:              '{{ genome.trixURI }}',
+			 provides_karyotype:   true,
+			 provides_search:      true
+			},
+
+			 {name:                'Repeats',
+			 uri:                  'http://www.derkholm.net:8080/das/hsa_54_36p/',
+			 stylesheet_uri:       'http://www.derkholm.net/dalliance-test/stylesheets/ens-repeats.xml'
+			},
+
+			 {name:                'MeDIP raw',
+			 uri:                  'http://www.derkholm.net:8080/das/medipseq_reads'
+			},
+	 ],
+
+    uiPrefix: 	'//www.biodalliance.org/release-0.13/',
+
+
+
+
+
+    hubs:
+	 [
+
+	 ],
+
+});
+</script>
+
+<div id="svgHolder" style='margin-left: 5%; margin-right: 5%; border-width: 1px; border-style: solid; border-color: #ccc; border-radius: 4px; padding: 10px'></div>
+
+
+{% endblock %}

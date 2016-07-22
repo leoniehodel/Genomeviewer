@@ -1,0 +1,48 @@
+{% extends 'trackhubs/base.html' %}
+{% block title %}{{ trackhub.hub_name }}{% endblock %}
+{% block body %}
+{% if error_message %}
+    <p><strong> {{ error_message }}</strong></p>
+{% endif %}
+
+<div class="container">
+  <h4 style="color:#8A8A8A">Track Hub</h4><h4>{{ trackhub.hub_name }}</h4>
+  <p>   {{ trackhub.short_label }}</p>
+
+  <div class="panel-group">
+      {% for track in trackhub.track_set.all %}
+    <div class="panel panel-default">
+      <div class="panel-heading">{{ track.name }}</div>
+      <div class="panel-body">
+          {{ track.short_label }}<br>
+          {{ track.long_label }}<br>
+          {{track.url }}<br><br>
+                            <!-- Update Track -->
+                            <form action="" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="track_id" value="{{ track.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                     </button>
+                            </form>
+                            <!-- Delete Track -->
+                            <form action="{% url 'trackhubs:delete_track' trackhub.id track.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="track_id" value="{{ track.id }}" />
+                                     <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                     </button>
+                            </form>
+      </div>
+    </div>
+       {% endfor %}
+
+      <ul class="nav nav-pills" style="margin-left: 5px;">
+                <li role="presentation"><a href="{% url 'trackhubs:create_track' trackhub.id %}">Add New Track</a></li>
+   </ul>
+  </div>
+</div>
+
+{% endblock %}
+
+

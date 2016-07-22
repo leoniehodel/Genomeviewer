@@ -1,0 +1,53 @@
+{% extends 'trackhubs/base.html' %}
+{% block title %}Trackhubs{% endblock %}
+
+{% block body %}
+
+{% if error_message %}
+    <p><strong> {{ error_message }}</strong></p>
+{% endif %}
+
+<div class="container">
+  <h3>Track Hubs </h3>
+  <p>   create your own Track Hub </p>
+
+  <div class="panel-group">
+      {% for t in trackhubs %}
+    <div class="panel panel-default">
+      <div class="panel-heading">{{ t.hub_name }}</div>
+      <div class="panel-body">
+          {{ t.short_label }}<br>
+          {{ t.long_label }}<br><br>
+                            <!-- View Details -->
+                            <a href="{% url 'trackhubs:detail' t.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                            <!-- Get URL -->
+                            <a href="" class="btn btn-primary btn-sm" role="button">Get URL</a>
+
+                            <!-- Update Trackhub -->
+                            <form action="" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="trackhub_id" value="{{ t.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                     </button>
+                            </form>
+                            <!-- Delete Trackhub -->
+                            <form action="{%  url 'trackhubs:delete_trackhub' t.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="trackhub_id" value="{{ t.id }}" />
+                                     <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                     </button>
+                            </form>
+      </div>
+    </div>
+       {% endfor %}
+
+      <ul class="nav nav-pills" style="margin-left: 5px;">
+                <li role="presentation"><a href="{% url 'trackhubs:create_trackhub' %}">Add New Trackhub</a></li>
+   </ul>
+  </div>
+</div>
+
+{% endblock %}

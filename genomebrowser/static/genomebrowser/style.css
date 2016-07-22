@@ -1,0 +1,10 @@
+body{
+    background-image: white ;
+}
+.navbar{
+    border-radius: 1;
+}
+
+.navbar-brand{
+    font-family: 'Marvel', sans-serif;
+}

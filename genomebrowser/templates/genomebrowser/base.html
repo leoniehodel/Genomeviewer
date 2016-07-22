@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}GenomeViewer{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'genomebrowser/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Marvel" rel="stylesheet" type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+       <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-targer="#topNavBar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="{% url 'genomebrowser:index' %}" >GenomeViewer</a>
+       </div>
+
+
+        <!--Items -->
+
+        <div class="collapse navbar-collapse" id="#topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genomes<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    {% block dropdown %}
+                    {% endblock %}
+                </ul>
+                 </li>
+                <li class="">
+                    <a href="{% url 'genomebrowser:index' %}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Genomes
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'genomebrowser:genome_form' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Genome
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'trackhubs:index' %}">
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;Track Hubs
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

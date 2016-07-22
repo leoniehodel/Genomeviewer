@@ -1,0 +1,47 @@
+{% extends 'trackhubs/base.html' %}
+{% block title %}Add new Track{% endblock %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Add a New Track</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <form class="form-horizontal" action=" " method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        {% include 'trackhubs/form-template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>How do I?</h3>
+                    <p>... </p>
+                    <h3>What is?</h3>
+                    <p>....</p>
+                    <h3>What else</h3>
+                    <ul>
+                        <li>...</li>
+                        <li>use 2bit format</li>
+                        <li>use Illumina Syntax</li>
+                        <li>////</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
