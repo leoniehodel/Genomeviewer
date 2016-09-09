@@ -11,6 +11,7 @@ class TrackHubForm(forms.ModelForm):
 
 class TrackForm(forms.ModelForm):
 
+    # Provide an association between the ModelForm and a model
     class Meta:
         model = Track
         fields = ['TrackHub', 'Supertrack', 'name', 'long_label', 'short_label', 'url', 'track_type', 'color']

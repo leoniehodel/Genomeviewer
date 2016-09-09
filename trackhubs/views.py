@@ -63,7 +63,7 @@ def delete_track(request,track_id, trackhub_id):
 
 
 def makehubfile(trackhub):
-    return ("hub   "+trackhub.hub_name+"\nshortlabel   "+trackhub.short_label+"\nlonglabel   "+trackhub.long_label +
+    return ("hub   "+trackhub.hub_name+"\nshortLabel   "+trackhub.short_label+"\nlongLabel   "+trackhub.long_label +
             "\nemail   "+trackhub.email)
 
 
@@ -78,7 +78,7 @@ def maketrackDbfile(th):
     trackDb = open(os.path.join(path, 'trackDb.txt'), 'w')
     s = ''
     for track in th.track_set.all():
-        s += ("track   "+track.name+"\nshortlabel   "+track.short_label+"\nlonglabel   "+track.long_label+
+        s += ("track   "+track.name+"\nshortLabel   "+track.short_label+"\nlongLabel   "+track.long_label+
         '\ntype   '+track.track_type+"\nbigDataUrl   "+track.url+"\n\n")
     trackDb.write(s)
     trackDb.close()
