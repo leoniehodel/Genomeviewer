@@ -1,0 +1,4 @@
+hub   trackhub
+shortLabel   a trackhub
+longLabel   a trackhub
+email   no@thanks

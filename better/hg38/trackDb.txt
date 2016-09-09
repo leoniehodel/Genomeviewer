@@ -1,0 +1,6 @@
+track this
+shortLabel thisone
+longLabel thisone
+type bigWig
+bigDataUrl //www.biodalliance.org/datasets/phastCons46way.bw
+

@@ -1,0 +1,6 @@
+track   tr
+shortLabel   this is a track
+longLabel   this is a track
+type   bigwig
+bigDataUrl   //www.biodalliance.org/datasets/phastCons46way.bw
+
