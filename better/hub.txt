@@ -1,4 +1,0 @@
-hub better
-shortLabel better
-longLabel better
-email better@better.b
