@@ -1,7 +1,9 @@
-<<<<<<< HEAD
-this is a readme
-# genomeviewer
-=======
+
 # Genomeviewer
 Biodalliance Genome Viewer and a TrackHub repository generator
->>>>>>> f8936ec627437f2ca5f091d40a63d09209d0fce2
+
+Install Django then
+
+  python manage.py runserver
+
+go to the development server to have a look 
